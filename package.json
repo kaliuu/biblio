@@ -4,16 +4,15 @@
   "description": "La web de la Bibilioteca Martí",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon -e hdb,js ./src/index.js"
+    "start": "node ./src/index.js",
+    "test": "nodemon -e hbs,js ./src/index.js"
   },
   "author": "rgras",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "express-handlebars": "^5.3.4",
     "express-session": "^1.17.2",
-    "firebase-admin": "^9.12.0",
-    "morgan": "^1.10.0"
+    "firebase-admin": "^9.12.0"
   }
 }
