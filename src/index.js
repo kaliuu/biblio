@@ -1,5 +1,4 @@
-const app = require('./app');
+const appl = require('./app');
 
 const port = process.env.PORT || 3000;
-
-app.app.listen(port, () => console.log(`Aplicació inicada al port ${port}`))
+appl.app.listen(port, () => console.log(`Aplicació inicada al port ${port}`))
