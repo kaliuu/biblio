@@ -2,7 +2,7 @@
   "name": "biblioteca-marti",
   "version": "1.0.0",
   "description": "La web de la Bibilioteca Martí",
-  "main": "index.js",
+  "main": "src/app.js",
   "scripts": {
     "start": "node src/app.js",
     "test": "nodemon -e hbs,js src/app.js"

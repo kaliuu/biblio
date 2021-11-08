@@ -140,5 +140,4 @@ app.listen(PORT, () => {
   console.log(`Servidor funcionant en ${PORT}!`)
 });
 
-
 module.exports = app;
