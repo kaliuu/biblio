@@ -4,8 +4,8 @@
   "description": "La web de la Bibilioteca Martí",
   "main": "index.js",
   "scripts": {
-    "start": "node ./src/index.js",
-    "test": "nodemon -e hbs,js ./src/index.js"
+    "start": "node src/app.js",
+    "test": "nodemon -e hbs,js src/app.js"
   },
   "author": "rgras",
   "license": "ISC",

@@ -10,9 +10,9 @@ const app = express();
 // Dues hores en milisegons
 const duesHores = 1000 * 60 * 60 * 2;
 
-// ----------- OPCIONS --------------
-app.set("port", process.env.PORT || 3030); // Quin es el port
 
+const PORT = process.env.PORT || 3030
+// ----------- OPCIONS --------------
 app.set("views", path.join(__dirname, "views")); // On es troben les views
 
 app.use(express.static(path.join(__dirname, "public"))); // On es troben els assets
@@ -136,6 +136,9 @@ app.post('/logout', redireccionaLogin, (req, res) => {
   )
 })
 
+app.listen(PORT, () => {
+  console.log(`Servidor funcionant en ${PORT}!`)
+});
 
 
-module.exports = { app, redireccionaLogin };
+module.exports = app;
