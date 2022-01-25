@@ -6,7 +6,46 @@
     <div class="card">
       <div class="card-body">
         <h5 class="card-title"> 📚 Registrar un llibre a la biblioteca </h5>
-        <p class="card-text"> </p>
+        <p class="card-text">
+          <form action="/noullibre" method="post">
+            <div class="mb-3">
+                <label class="form-label">Nom del llibre</label>
+                <input
+                    type="number"
+                    class="form-control"
+                    name="iban"
+                />
+            </div>
+            <div class="mb-3">
+            <label class="form-label">Nom del llibre</label>
+              <input
+                type="nom"
+                class="form-control"
+                name="nomLlibre"
+              />
+            </div>
+            <div class="mb-3">
+              <label
+                for="autor"
+                class="form-label"
+              >Autor</label>
+              <input
+                type="text"
+                class="form-control"
+                name="autor"
+              />
+            </div>
+            <div class="mb-3 form-check">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                id="segur"
+              />
+              <label class="form-check-label">Estàs segur?</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Crear</button>
+          </form>
+        </p>
       </div>
     </div>
     <div class="card">
@@ -17,4 +56,3 @@
     </div>
   </div>
 </div>
-

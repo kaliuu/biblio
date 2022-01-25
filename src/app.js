@@ -40,7 +40,7 @@ app.use(require("./routes/routes"));
 // ------------- MIDDLEWARE ----------
 // Que sols s'ens pugui retornar stings i arrays
 app.use(express.urlencoded({ extended: false }));
-// ---------- Funcions de middleware -------------------------
+// ---------- Funcions de middleware -----------------
 const redireccionaLogin = (req, res, next) => {
   if (!req.session.userId) {
     res.redirect('/login')
@@ -59,19 +59,7 @@ const redireccionaAdmin = (req, res, next) => {
   }
 }
 
-// -------------------- FIREBASE -----------------------
-const fireConfig = {
-  apiKey: "AIzaSyBKz8ENSpk_Zo490y-5y6Gqq9J64ULVtP8",
-  authDomain: "bibliotecamartirgras.firebaseapp.com",
-  projectId: "bibliotecamartirgras",
-  storageBucket: "bibliotecamartirgras.appspot.com",
-  messagingSenderId: "115890519251",
-  appId: "1:115890519251:web:2c031eaff7cf9e6673a826"
-};
-
-firebase.initializeApp(fireConfig);
-
-// Sesió
+// --------------- SESSIÓ ----------------------------
 app.use(
   session({
     name: 'sid',
@@ -86,9 +74,7 @@ app.use(
   })
 );
 
-
-
-// INICI DE SESSIÓ
+// Usuari
 const users = [
   { id: 1, name: 'admin', password: 'admin' }
 ]
@@ -106,7 +92,6 @@ app.get('/login', redireccionaAdmin, (req, res) => {
     active: { login: true },
   });
 })
-
 
 app.post('/login', redireccionaAdmin, (req, res) => {
   const { user, password } = req.body
@@ -136,6 +121,38 @@ app.post('/logout', redireccionaLogin, (req, res) => {
   )
 })
 
+// -------------------- FIREBASE -----------------------
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBKz8ENSpk_Zo490y-5y6Gqq9J64ULVtP8",
+  authDomain: "bibliotecamartirgras.firebaseapp.com",
+  databaseURL: "https://bibliotecamartirgras-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "bibliotecamartirgras",
+  storageBucket: "bibliotecamartirgras.appspot.com",
+  messagingSenderId: "115890519251",
+  appId: "1:115890519251:web:2c031eaff7cf9e6673a826"
+};
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
+
+let db = firebase.database();
+let userRef = db.ref('users/' + 1);
+userRef.child('mike').set({
+  'firstName': 'mike', 'lastName': 'mike', 'gender': 'mikousky'.toLowerCase()
+})
+// Recull el formulari de nou llibre
+app.post('/noullibre', (req, res) => {
+  const nouLlibre = {
+    iban: req.body.iban,
+    nom: req.body.nomLlibre,
+    autor: req.body.autor
+  }
+  llibres.set(nouLlibre)
+  res.redirect('/admin')
+})
+
+// ------------------- INICIALITZACIÓ ----------------
 app.listen(PORT, () => {
   console.log(`Servidor funcionant en ${PORT}!`)
 });
